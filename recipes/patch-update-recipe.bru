@@ -1,0 +1,21 @@
+meta {
+  name: Patch Update Recipe
+  type: http
+  seq: 1
+}
+
+patch {
+  url: http://localhost:3001/api/updateRecipe/3
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "Test",
+    "difficulty": 3,
+    "budget": 3,
+    "time": 45,
+    "description": "Test"
+  }
+}

@@ -1,0 +1,21 @@
+meta {
+  name: Post Create Recipe
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3001/api/createRecipe
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "Poulet au curry coco",
+    "difficulty": 2,
+    "budget": 2,
+    "time": 35,
+    "description": "Des morceaux de poulet mijotés dans une sauce curry au lait de coco."
+  }
+}
