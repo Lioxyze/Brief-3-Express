@@ -1,52 +1,39 @@
-@apiUrl = http://172.20.16.191:1337/api
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzYyNzgyMjI5LCJleHAiOjE3NjUzNzQyMjl9.9o6vmKfQBQ1vICpxyKo5N6EJdpNGm_LdB-bOIUUHQmw
-@id = 1
+@apiUrl = http://localhost:3001/api
 
-### User Authentication (Login)
-POST {{apiUrl}}/auth/local
-Content-Type: application/json
-
-{
-  "identifier": "lorenzopro38@gmail.com",
-  "password": "Itoyup64.."
-}
-
-###
-
-@apiUrl = http://localhost:3000
-
-### 🔹 Récupérer toutes les recettes
+###  Récupérer toutes les recettes
 GET {{apiUrl}}/allRecipe
 Content-Type: application/json
 
 ###
 
-### 🔹 Créer une recette
+### Créer une recette
 POST {{apiUrl}}/createRecipe
 Content-Type: application/json
 
 {
   "title": "Ratatouille provençale",
-  "difficulty": 2,
-  "price": 15,
-  "time": 40
+  "difficulty": "facile",
+  "budget": "15€",
+  "time": "40 min",
+  "description": "Ratatouille traditionnelle du Sud."
 }
 
 ###
 
-### 🔹 Mettre à jour une recette
+###  Mettre à jour une recette
 PATCH {{apiUrl}}/updateRecipe/1
 Content-Type: application/json
 
 {
   "title": "Ratatouille maison",
-  "difficulty": 3,
-  "price": 18,
-  "time": 45
+  "difficulty": "moyenne",
+  "budget": "18€",
+  "time": "45 min",
+  "description": "Version améliorée de la ratatouille."
 }
 
 ###
 
-### 🔹 Supprimer une recette
+###  Supprimer une recette
 DELETE {{apiUrl}}/deleteRecipe/1
 Content-Type: application/json
