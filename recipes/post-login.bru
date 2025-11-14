@@ -1,0 +1,18 @@
+meta {
+  name: Post Login
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3001/auth/AuthLogin
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "identifier": "lorenzopro38@gmail.com",
+    "password": "Itoyup64.."
+  }
+}

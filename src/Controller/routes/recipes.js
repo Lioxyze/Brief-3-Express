@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { authMiddleware } from "../../Middlewares/authMiddleware.js";
 import {
   allRecipe,
   deleteRecipe,
@@ -9,10 +10,11 @@ import {
 export function recipesRouter(db) {
   const recipe = Router();
 
-  recipe.post("/createRecipe", (req, res) => createRecipe(req, res, db));
-  recipe.get("/allRecipe", (req, res) => allRecipe(req, res, db));
-  recipe.patch("/updateRecipe/:id", (req, res) => updateRecipe(req, res, db));
-  recipe.delete("/deleteRecipe/:id", (req, res) => deleteRecipe(req, res, db));
 
+  // recipe.use(authMiddleware);
+  recipe.post("/recettes", (req, res) => createRecipe(req, res, db));
+  recipe.get("/recettes", (req, res) => allRecipe(req, res, db));
+  recipe.patch("/recettes/:id", (req, res) => updateRecipe(req, res, db));
+  recipe.delete("/recettes/:id", (req, res) => deleteRecipe(req, res, db));
   return recipe;
 }

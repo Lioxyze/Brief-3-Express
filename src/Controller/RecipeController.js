@@ -1,7 +1,17 @@
-//  Récupérer toutes les recettes
+// Récupérer toutes les recettes
 export async function allRecipe(req, res, db) {
   const recipes = await db.all("SELECT * FROM recipes");
-  res.json(recipes);
+
+  res.json({
+    data: recipes.map(r => ({
+      id: r.id,
+      titre: r.title,
+      tempsDePreparation: r.time,
+      difficulte: r.difficulty,
+      budget: r.budget,
+      description: r.description
+    })),
+  });
 }
 
 // Créer une recette
@@ -14,8 +24,14 @@ export async function createRecipe(req, res, db) {
   );
 
   res.status(201).json({
-    message: "Recette ajoutée avec succès",
-    recette: { id: result.lastID, title, difficulty, budget, time, description },
+    data: {
+      id: result.lastID,
+      titre: title,
+      difficulte: difficulty,
+      budget: budget,
+      tempsDePreparation: time,
+      description: description
+    }
   });
 }
 
@@ -33,17 +49,29 @@ export async function updateRecipe(req, res, db) {
     return res.status(404).json({ error: "Recette non trouvée" });
   }
 
-  res.json({ message: "Recette mise à jour avec succès" });
+  res.json({
+    data: {
+      id,
+      titre: title,
+      difficulte: difficulty,
+      budget,
+      tempsDePreparation: time,
+      description
+    }
+  });
 }
 
 // Supprimer une recette
 export async function deleteRecipe(req, res, db) {
   const { id } = req.params;
+
   const result = await db.run("DELETE FROM recipes WHERE id = ?", [id]);
 
   if (result.changes === 0) {
     return res.status(404).json({ error: "Recette non trouvée" });
   }
 
-  res.json({ message: "Recette supprimée avec succès" });
+  res.json({
+    data: null
+  });
 }

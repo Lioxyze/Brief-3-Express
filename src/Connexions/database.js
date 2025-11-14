@@ -8,13 +8,20 @@ export async function connectToDatabase() {
   });
 
   await db.exec(`
-    CREATE TABLE IF NOT EXISTS recipes (
+   CREATE TABLE IF NOT EXISTS recipes (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       title TEXT,
-      time INTEGER,
-      difficulty INTEGER,
-      budget INTEGER,
+      difficulty TEXT,
+      budget TEXT,
+      time TEXT,
       description TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      username TEXT NOT NULL,
+      email TEXT UNIQUE NOT NULL,
+      password TEXT NOT NULL
     );
   `);
 

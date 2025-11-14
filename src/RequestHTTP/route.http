@@ -1,39 +1,72 @@
-@apiUrl = http://localhost:3001/api
+@apiUrl = http://localhost:5000
 
-###  Récupérer toutes les recettes
-GET {{apiUrl}}/allRecipe
-Content-Type: application/json
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJsb3JlbnpvcHJvMzhAZ21haWwuY29tIiwiaWF0IjoxNzYzMTI0Mzk2LCJleHAiOjE3NjMxMjc5OTZ9.MGL4fXYFRQgCkCbLn7dANPnXUjnjzaC3RQzfY6pYDEk
 
-###
 
-### Créer une recette
-POST {{apiUrl}}/createRecipe
+### POST — Login utilisateur
+POST {{apiUrl}}/auth/local
 Content-Type: application/json
 
 {
+  "identifier": "lorenzopro38@gmail.com",
+  "password": "LorenzoTest"
+}
+
+###
+POST {{apiUrl}}/auth/local/register
+Content-Type: application/json
+
+{
+  "username": "Lioxyze",
+  "email": "lorenzopro38@gmail.com",
+  "password": "LorenzoTest"
+
+}
+
+
+### GET ALL — Récupérer toutes les recettes
+GET {{apiUrl}}/api/recettes
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+
+###
+
+### CREATE — Créer une recette
+POST {{apiUrl}}/api/recettes
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+{
   "title": "Ratatouille provençale",
-  "difficulty": "facile",
-  "budget": "15€",
-  "time": "40 min",
+  "difficulty": 2,
+  "budget": 1,
+  "time": 40,
   "description": "Ratatouille traditionnelle du Sud."
 }
 
 ###
 
-###  Mettre à jour une recette
-PATCH {{apiUrl}}/updateRecipe/1
+### UPDATE — Mettre à jour une recette
+PATCH {{apiUrl}}/api/recettes/4
 Content-Type: application/json
+Authorization: Bearer {{token}}
+
 
 {
   "title": "Ratatouille maison",
-  "difficulty": "moyenne",
-  "budget": "18€",
-  "time": "45 min",
-  "description": "Version améliorée de la ratatouille."
+  "difficulty": 3,
+  "budget": 2,
+  "time": 45,
+  "description": "Version améliorée."
 }
 
 ###
 
-###  Supprimer une recette
-DELETE {{apiUrl}}/deleteRecipe/1
+### DELETE — Supprimer une recette
+DELETE {{apiUrl}}/api/recettes/1
 Content-Type: application/json
+Authorization: Bearer {{token}}
+
