@@ -1,13 +1,10 @@
 node_modules
-database.database
+marmiton.db
 requests.http
 .nvmrc
-.Ds_Store
+.DS_Store
 .git
 strapi
-docckerignore
+.dockerignore
+.gitignore
 Dockerfile
-node_modules
-npm-debug.log
-Dockerfile
-.git
